@@ -6,7 +6,7 @@ const serverConfig = {
     },
     directoryListing: false,
     open: false,
-    port: 3000,
+    port: 3006,
     middleware: [ // 中间件 http-proxy-middleware
         proxy('/fanshu', {
             target: 'https://www.jianshu.com/',
