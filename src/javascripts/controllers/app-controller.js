@@ -1,7 +1,8 @@
 const appHeaderView = require('../views/app-header.html');
-
-const render = () => {
+const renderAll = () => {
   $('#app #header').html(appHeaderView)     
 }
 
-module.exports = { render }
+module.exports = { 
+  renderAll
+ }
