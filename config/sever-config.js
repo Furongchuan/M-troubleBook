@@ -16,7 +16,7 @@ const serverConfig = {
             }
         })
     ],
-    proxies: [
+    proxies: [      
         // { source: '/api', target: '' }
     ]
 }
