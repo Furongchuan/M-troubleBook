@@ -1,0 +1,23 @@
+html,body{
+  width: 100%;
+  height: 100%;
+}
+#app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column; 
+  justify-content: space-between; 
+}
+#header {
+  widows: 100%;
+  height: 1.12rem;
+  flex-grow: 0; 
+  flex-shrink: 0;
+}
+#main {
+  width: 100%; 
+  flex-grow: 1;
+  flex-shrink: 1;
+  // overflow: auto;
+}
