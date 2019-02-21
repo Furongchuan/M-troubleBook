@@ -86,14 +86,36 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/javascripts/controllers/app-controller.js":
+/*!*******************************************************!*\
+  !*** ./src/javascripts/controllers/app-controller.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const appHeaderView = __webpack_require__(/*! ../views/app-header.html */ \"./src/javascripts/views/app-header.html\");\r\n\r\nconst render = () => {\r\n  $('#app #header').html(appHeaderView)     \r\n}\r\n\r\nmodule.exports = { render }\n\n//# sourceURL=webpack:///./src/javascripts/controllers/app-controller.js?");
+
+/***/ }),
+
 /***/ "./src/javascripts/index.js":
 /*!**********************************!*\
   !*** ./src/javascripts/index.js ***!
   \**********************************/
 /*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const appController = __webpack_require__(/*! ./controllers/app-controller */ \"./src/javascripts/controllers/app-controller.js\");\r\n\r\nappController.render()\n\n//# sourceURL=webpack:///./src/javascripts/index.js?");
+
+/***/ }),
+
+/***/ "./src/javascripts/views/app-header.html":
+/*!***********************************************!*\
+  !*** ./src/javascripts/views/app-header.html ***!
+  \***********************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("\n\n//# sourceURL=webpack:///./src/javascripts/index.js?");
+eval("module.exports = \"<header id=\\\"app-header\\\">  <img src=\\\"./static/images/nav-logo.faf216af.png\\\" alt=\\\"\\\" class=\\\"header-logo\\\">  <h3 class=\\\"header-title\\\">创作你的创作</h3></header>\"\n\n//# sourceURL=webpack:///./src/javascripts/views/app-header.html?");
 
 /***/ })
 
