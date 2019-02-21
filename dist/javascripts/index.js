@@ -115,7 +115,7 @@ eval("const appHeaderView = __webpack_require__(/*! ../views/app-header.html */ 
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const appIndexTopView = __webpack_require__(/*! ../views/app-index_top.html */ \"./src/javascripts/views/app-index_top.html\");\r\nconst { getBooksList } = __webpack_require__(/*! ../models/app-index-model */ \"./src/javascripts/models/app-index-model.js\")\r\n\r\nconst render = async() => {\r\n  let BooksList = await getBooksList();\r\n  let template = Handlebars.compile(appIndexTopView);\r\n  $('#app #main').html(template({ taps: BooksList}))\r\n\r\n}\r\n\r\nmodule.exports = { render }\n\n//# sourceURL=webpack:///./src/javascripts/controllers/app-index-controller.js?");
+eval("const appIndexTopView = __webpack_require__(/*! ../views/app-index_top.html */ \"./src/javascripts/views/app-index_top.html\");\r\nconst { getBooksList } = __webpack_require__(/*! ../models/app-index-model */ \"./src/javascripts/models/app-index-model.js\")\r\n\r\nconst render = async() => {\r\n  let BooksList = await getBooksList();\r\n  let template = Handlebars.compile(appIndexTopView);\r\n  $('#app #main #tbook').html(template({ taps: BooksList}))\r\n\r\n}\r\n\r\nmodule.exports = { render }\n\n//# sourceURL=webpack:///./src/javascripts/controllers/app-index-controller.js?");
 
 /***/ }),
 
@@ -137,7 +137,7 @@ eval("const appController = __webpack_require__(/*! ./controllers/app-controller
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const api = __webpack_require__(/*! ../api */ \"./src/javascripts/api/index.js\")\r\n// 获取主页内容\r\nconst getBooksList = () => {\r\n  return api.request({ url: 'asimov/subscriptions/recommended_collections?except_collection_ids[]=4&except_collection_ids[]=95&except_collection_ids[]=14&except_collection_ids[]=21&except_collection_ids[]=83&except_collection_ids[]=76&except_collection_ids[]=283250' })\r\n}\r\n\r\nmodule.exports = {\r\n  getBooksList,\r\n}\n\n//# sourceURL=webpack:///./src/javascripts/models/app-index-model.js?");
+eval("const api = __webpack_require__(/*! ../api */ \"./src/javascripts/api/index.js\")\r\n// 获取主页内容\r\nconst getBooksList = () => {\r\n  return api.request({ url: 'asimov/subscriptions/recommended_collections?except_collection_ids[]=21&except_collection_ids[]=283250&except_collection_ids[]=83&except_collection_ids[]=4&except_collection_ids[]=95&except_collection_ids[]=14&except_collection_ids[]=76&except_collection_ids[]=13&except_collection_ids[]=38&except_collection_ids[]=28&except_collection_ids[]=11&except_collection_ids[]=256739&except_collection_ids[]=105&except_collection_ids[]=26'})\r\n}\r\n\r\nmodule.exports = {\r\n  getBooksList,\r\n}\n\n//# sourceURL=webpack:///./src/javascripts/models/app-index-model.js?");
 
 /***/ }),
 
@@ -159,7 +159,7 @@ eval("module.exports = \"<header id=\\\"app-header\\\">  <img src=\\\"./static/i
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = \"    <!-- 内容区域顶部的控制 start -->    <div class=\\\"tbook--top\\\">      <div class=\\\"tbook--top-title\\\">        <span>热门专题</span><span class=\\\"tbook--top-title_new\\\">换一批</span>      </div>      <div class=\\\"tbook--top_tabs\\\">        {{#each taps}}        <a href=\\\"{{image_url}}\\\" class=\\\"tag\\\" name=\\\"{{slug}}\\\">{{title}}</a>        {{/each}}      </div>  </div>  <!-- 内容区域顶部的控制 end -->\"\n\n//# sourceURL=webpack:///./src/javascripts/views/app-index_top.html?");
+eval("module.exports = \"    <!-- 内容区域顶部的控制 start -->    <div class=\\\"tbook--top\\\">      <div class=\\\"tbook--top-title\\\">        <span>热门专题</span><span class=\\\"tbook--top-title_new\\\">换一批</span>      </div>      <div class=\\\"tbook--top_tabs\\\">        {{#each taps}}        <a href=\\\"{{image_url}}\\\" class=\\\"tag\\\" name=\\\"{{slug}}\\\">{{title}}</a>        {{/each}}      </div>      <hr>  </div>  <!-- 内容区域顶部的控制 end -->\"\n\n//# sourceURL=webpack:///./src/javascripts/views/app-index_top.html?");
 
 /***/ })
 
