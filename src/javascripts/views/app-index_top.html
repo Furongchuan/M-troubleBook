@@ -1,0 +1,12 @@
+    <!-- 内容区域顶部的控制 start -->
+    <div class="tbook--top">
+      <div class="tbook--top-title">
+        <span>热门专题</span><span class="tbook--top-title_new">换一批</span>
+      </div>
+      <div class="tbook--top_tabs">
+        {{#each taps}}
+        <a href="{{image_url}}" class="tag" name="{{slug}}">{{title}}</a>
+        {{/each}}
+      </div>
+  </div>
+  <!-- 内容区域顶部的控制 end -->

@@ -86,6 +86,17 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/javascripts/api/index.js":
+/*!**************************************!*\
+  !*** ./src/javascripts/api/index.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("// 封装api是为了统一处理跨域路径 还有 对请求回来的数据的处理\r\nconst api = {\r\n  request ({\r\n      url, data, methods\r\n  }, mock) {\r\n      return $.ajax({\r\n          url: (mock ? '' : '/fanshu' ) + url,\r\n          data: data || {},\r\n          methods: methods || 'get',\r\n          success: (res) => {\r\n              return res\r\n          },\r\n          error: (error) => {\r\n              console.log('请求出错了', error)\r\n          }\r\n      }) \r\n  },\r\n  mock (options) {\r\n      return this.request(options, true)\r\n  }\r\n}\r\n\r\nmodule.exports = api\n\n//# sourceURL=webpack:///./src/javascripts/api/index.js?");
+
+/***/ }),
+
 /***/ "./src/javascripts/controllers/app-controller.js":
 /*!*******************************************************!*\
   !*** ./src/javascripts/controllers/app-controller.js ***!
@@ -93,7 +104,18 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const appHeaderView = __webpack_require__(/*! ../views/app-header.html */ \"./src/javascripts/views/app-header.html\");\r\n\r\nconst render = () => {\r\n  $('#app #header').html(appHeaderView)     \r\n}\r\n\r\nmodule.exports = { render }\n\n//# sourceURL=webpack:///./src/javascripts/controllers/app-controller.js?");
+eval("const appHeaderView = __webpack_require__(/*! ../views/app-header.html */ \"./src/javascripts/views/app-header.html\");\r\n\r\nconst render = () => {\r\n  $('#app #header').html(appHeaderView)      \r\n}\r\n\r\nmodule.exports = { render }\n\n//# sourceURL=webpack:///./src/javascripts/controllers/app-controller.js?");
+
+/***/ }),
+
+/***/ "./src/javascripts/controllers/app-index-controller.js":
+/*!*************************************************************!*\
+  !*** ./src/javascripts/controllers/app-index-controller.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const appIndexTopView = __webpack_require__(/*! ../views/app-index_top.html */ \"./src/javascripts/views/app-index_top.html\");\r\nconst { getBooksList } = __webpack_require__(/*! ../models/app-index-model */ \"./src/javascripts/models/app-index-model.js\")\r\n\r\nconst render = async() => {\r\n  let BooksList = await getBooksList();\r\n  let template = Handlebars.compile(appIndexTopView);\r\n  $('#app #main').html(template({ taps: BooksList}))\r\n\r\n}\r\n\r\nmodule.exports = { render }\n\n//# sourceURL=webpack:///./src/javascripts/controllers/app-index-controller.js?");
 
 /***/ }),
 
@@ -104,7 +126,18 @@ eval("const appHeaderView = __webpack_require__(/*! ../views/app-header.html */ 
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const appController = __webpack_require__(/*! ./controllers/app-controller */ \"./src/javascripts/controllers/app-controller.js\");\r\n\r\nappController.render()\n\n//# sourceURL=webpack:///./src/javascripts/index.js?");
+eval("const appController = __webpack_require__(/*! ./controllers/app-controller */ \"./src/javascripts/controllers/app-controller.js\");\r\nconst appIndexPage = __webpack_require__(/*! ./controllers/app-index-controller */ \"./src/javascripts/controllers/app-index-controller.js\")\r\n\r\nappController.render()\r\nappIndexPage.render()\n\n//# sourceURL=webpack:///./src/javascripts/index.js?");
+
+/***/ }),
+
+/***/ "./src/javascripts/models/app-index-model.js":
+/*!***************************************************!*\
+  !*** ./src/javascripts/models/app-index-model.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const api = __webpack_require__(/*! ../api */ \"./src/javascripts/api/index.js\")\r\n// 获取主页内容\r\nconst getBooksList = () => {\r\n  return api.request({ url: 'asimov/subscriptions/recommended_collections?except_collection_ids[]=4&except_collection_ids[]=95&except_collection_ids[]=14&except_collection_ids[]=21&except_collection_ids[]=83&except_collection_ids[]=76&except_collection_ids[]=283250' })\r\n}\r\n\r\nmodule.exports = {\r\n  getBooksList,\r\n}\n\n//# sourceURL=webpack:///./src/javascripts/models/app-index-model.js?");
 
 /***/ }),
 
@@ -116,6 +149,17 @@ eval("const appController = __webpack_require__(/*! ./controllers/app-controller
 /***/ (function(module, exports) {
 
 eval("module.exports = \"<header id=\\\"app-header\\\">  <img src=\\\"./static/images/nav-logo.faf216af.png\\\" alt=\\\"\\\" class=\\\"header-logo\\\">  <h3 class=\\\"header-title\\\">创作你的创作</h3></header>\"\n\n//# sourceURL=webpack:///./src/javascripts/views/app-header.html?");
+
+/***/ }),
+
+/***/ "./src/javascripts/views/app-index_top.html":
+/*!**************************************************!*\
+  !*** ./src/javascripts/views/app-index_top.html ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = \"    <!-- 内容区域顶部的控制 start -->    <div class=\\\"tbook--top\\\">      <div class=\\\"tbook--top-title\\\">        <span>热门专题</span><span class=\\\"tbook--top-title_new\\\">换一批</span>      </div>      <div class=\\\"tbook--top_tabs\\\">        {{#each taps}}        <a href=\\\"{{image_url}}\\\" class=\\\"tag\\\" name=\\\"{{slug}}\\\">{{title}}</a>        {{/each}}      </div>  </div>  <!-- 内容区域顶部的控制 end -->\"\n\n//# sourceURL=webpack:///./src/javascripts/views/app-index_top.html?");
 
 /***/ })
 
