@@ -1,20 +1,34 @@
 // 获取collection主要内容视图
 const appCollectionMainView = require('../views/app-collection.html');
 // 获取collection的info数据
-const collectionData = require('../models/app-collection-mode').collectionData
-
-
-const renderCollection = () => {
-  let { title, image, content_without_html, owner, subscribers_count, notes_count } =  collectionData ;
+const { getCollectionData }= require('../models/app-collection-mode');
+const renderCollection = async() => {
+  let collectionData = await getCollectionData();
+  let { title, image, content_without_html, content_in_full, owner, subscribers_count, notes_count } =  collectionData ;
   let nickname = owner.nickname;
+
   subscribers_count = turnNumberToString(subscribers_count);
   notes_count = turnNumberToString(notes_count);
-  content_without_html = turnContentWithout(content_without_html);
+  content_without_html = turnContentWithout(content_without_html) + `<i class="iconfont icon-jiantou_down"></i>`;
   $('#app #main-collection').html(
     Handlebars.compile(appCollectionMainView)({image:image, title:title, content: content_without_html, nickname:nickname, 
       subscribers_count:subscribers_count, notes_count:notes_count})
   )
-  
+  handleIntro();
+
+  // intro点击切换视图内容
+  function handleIntro (){
+    let oIntro = document.querySelector('.collection-main_info_intro');
+    let introBool = true;
+    oIntro.addEventListener('click',() => {
+      if(introBool){
+        oIntro.innerHTML = content_in_full + `收起<i class="iconfont icon-jiantou_up"></i>`
+      }else{
+        oIntro.innerHTML = content_without_html
+      }
+      introBool = !introBool;
+    })
+  } 
   // 断句
   function turnContentWithout (str) {
     let newStr
@@ -28,8 +42,6 @@ const renderCollection = () => {
     return str
   }
 }
-
-
 
 module.exports = { 
   renderCollection

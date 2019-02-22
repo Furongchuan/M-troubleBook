@@ -17,6 +17,7 @@
   border: 1px solid;
   margin-right: 13px;
   border-color: #ddd;
+  flex-shrink: 0;
 }
 
 .collection-info_main-summary{
@@ -34,16 +35,24 @@
   margin: 8px 0;
   font-size: 14px;
   color: #969696;
+  a {
+    color: #3194d0;
+  }
 }
-.collection-main_info_desc a {
-  color: #3194d0;
-}
+
 
 .collection-main_info_intro {
   font-size: 14px;
   line-height: 20px;
   color: #484848;
   word-break: break-all;
+  p{
+    padding-bottom: 10px;
+    word-break: break-word;
+    a{
+      color: #3194d0;
+    }
+  }
 }
 
 .collection-main_info_follow {
