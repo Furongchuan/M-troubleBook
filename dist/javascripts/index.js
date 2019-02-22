@@ -192,7 +192,7 @@ eval("module.exports = \"<header id=\\\"app-header\\\">  <img src=\\\"./static/i
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = \"    <!-- 内容区域顶部的控制 start -->    <div class=\\\"tbook--top\\\">      <div class=\\\"tbook--top-title\\\">        <span>热门专题</span><span class=\\\"tbook--top-title_new\\\">换一批</span>      </div>      <div class=\\\"tbook--top_tabs\\\">        {{#each taps}}        <a href=\\\"{{image_url}}\\\" class=\\\"tag\\\" name=\\\"{{slug}}\\\">{{title}}</a>        {{/each}}      </div>      <hr>  </div>  <!-- 内容区域顶部的控制 end -->\"\n\n//# sourceURL=webpack:///./src/javascripts/views/app-index_top.html?");
+eval("module.exports = \"    <!-- 内容区域顶部的控制 start -->    <div class=\\\"tbook--top\\\">      <div class=\\\"tbook--top-title\\\">        <span>热门专题</span><span class=\\\"tbook--top-title_new\\\"><i class=\\\"iconfont icon-unie60e\\\"></i>换一批</span>      </div>      <div class=\\\"tbook--top_tabs\\\">        {{#each taps}}        <a href=\\\"{{image_url}}\\\" class=\\\"tag\\\" name=\\\"{{slug}}\\\">{{title}}</a>        {{/each}}      </div>      <hr>  </div>  <!-- 内容区域顶部的控制 end -->\"\n\n//# sourceURL=webpack:///./src/javascripts/views/app-index_top.html?");
 
 /***/ })
 
