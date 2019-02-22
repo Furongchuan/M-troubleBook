@@ -1,0 +1,65 @@
+#app-collection-main{
+  width: 100%;
+  height: 100%;
+  padding: 0 .48rem;
+  // background-color: #f5f5f5;
+}
+.collection-main__info{
+  padding: .533333rem 0 .4rem;
+  display: flex;
+  background: #fff;
+
+}
+.collection-main_info_avatar{
+  width: 1.92rem;
+  height: 1.92rem;
+  border-radius: 7px;
+  border: 1px solid;
+  margin-right: 13px;
+  border-color: #ddd;
+}
+
+.collection-info_main-summary{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.collection-main_info_name{
+  font-size: .506667rem;
+  font-weight: 700;
+  color: #484848;
+}
+.collection-main_info_desc {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #969696;
+}
+.collection-main_info_desc a {
+  color: #3194d0;
+}
+
+.collection-main_info_intro {
+  font-size: 14px;
+  line-height: 20px;
+  color: #484848;
+  word-break: break-all;
+}
+
+.collection-main_info_follow {
+  background-color: #42c02e;
+  border: 1px solid #42c02e;
+  color: #fff;
+  margin: 12px 0;
+  padding: 6px 0;
+  border-radius: 4px;
+  height: 40px;
+  font-size: 16px;
+}
+hr{
+  margin-left: -18px;
+  margin-right: -18px;
+  border-width: 0;
+  height: 10px;
+  background-color: #f5f5f5;
+}
