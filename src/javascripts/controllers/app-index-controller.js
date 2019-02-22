@@ -5,7 +5,6 @@ const render = async() => {
   let BooksList = await getBooksList();
   let template = Handlebars.compile(appIndexTopView);
   $('#app #main #tbook').html(template({ taps: BooksList}))
-
 }
 
 module.exports = { render }
