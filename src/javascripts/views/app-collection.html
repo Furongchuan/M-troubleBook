@@ -5,11 +5,16 @@
       <h4 class="collection-main_info_name">{{title}}</h4>
       <span class="collection-main_info_desc"><a href="">{{nickname}}</a> 编，{{notes_count}}篇文章，{{subscribers_count}}人关注</span>
       <div class="collection-main_info_intro">
-          {{{content}}}
-         
+          {{{content_without_html}}}
       </div>
       <button class="collection-main_info_follow"><i class="iconfont icon-jiahao"></i> 关注</button>
     </div>
+
   </div>
   <hr>
+  <ul class="collection-main_sort">
+    <li id='added_at'>最新收录</li>
+    <li id='commented_at' class="active">最新评论</li>
+    <li id='top'>热门</li>
+  </ul>
 </main>
