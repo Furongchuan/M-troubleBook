@@ -2,29 +2,42 @@
 const appCollectionMainView = require('../views/app-collection.html');
 // 获取collection的info数据
 const { getCollectionInfoData, getCollectionSortData }= require('../models/app-collection-mode');
+// 获取登录视图控制
+const appLogin = require('./app-login-controller');
 
 const renderCollection = async() => {
-  let order = 'commented_at';
-  // 控制info视图
-  class renderInfoCollection {
+  // 单例
+  class Collection {
     constructor () {
-      this.collectionData;
+      return Collection.info || this.createRenderInfoViews();
+    }
+    createRenderInfoViews () {
+      let info = new renderInfoViews();
+      Collection.info = info;
+      new renderSort().init();
+      return Collection.info
+    }
+  }
+  // info数据处理
+  class InfoDataProcessing {
+    constructor () {
+      this.collectionData = this.init();
     }
     // 初始化
     async init () {
-      this.collectionData = await getCollectionInfoData();
-      this.storedData();
-      $('#app #main-collection').html(
-        Handlebars.compile(appCollectionMainView)(this.collectionData)
-      )
-      new clickHandler('.collection-main_info_intro',this.collectionData).handleIntro();
+      let data = await getCollectionInfoData();
+      this.dataProcessing(data);
+      return data;
+    }
+    getInfoData () {
+      return this.collectionData;
     }
     // 处理数据
-    storedData () {
-      this.collectionData.nickname = this.collectionData.owner.nickname;
-      this.collectionData.subscribers_count = this.turnNumberToString(this.collectionData.subscribers_count);
-      this.collectionData.notes_count = this.turnNumberToString(this.collectionData.notes_count);
-      this.collectionData.content_without_html = this.turnContentWithout(this.collectionData.content_without_html) + `<i class="iconfont icon-jiantou_down"></i>`;
+    dataProcessing (data) {
+      data.nickname = data.owner.nickname;
+      data.subscribers_count = this.turnNumberToString(data.subscribers_count);
+      data.notes_count = this.turnNumberToString(data.notes_count);
+      data.content_without_html = this.turnContentWithout(data.content_without_html) + `<i class="iconfont icon-jiantou_down"></i>`;
     }
 
     // 把数字准换为字符，几万，小数点后保留1位
@@ -41,55 +54,141 @@ const renderCollection = async() => {
       return newStr;
     }
   }
-  // 控制sort视图
-  class renderSortCollection {
+  // 渲染info视图
+  class renderInfoViews {
     constructor () {
-      this.collectionData;
+      this.infoDataPromise = new InfoDataProcessing().getInfoData()
+      this.data;
+      this.introEvents;
+      this.introBool = true;
     }
     // 初始化
     async init () {
-      this.collectionData = await getCollectionSortData(order); 
-      new clickHandler('.collection-main_sort li').handleSort();
-      console.log(this.collectionData);
+      await this.getData(); 
+      this.bindEvents();
     }
-    // 数据改变
-    async renderNewData () {
-      this.init()
-      console.log(this.collectionData);
-    }
-  }
-  // 点击事件类
-  class clickHandler {
-    constructor (name,data) {
-      this.odom = document.querySelector(name);
-      this.$odom=$(name)
-      this.data = data || null;
-    }
-    // Intro的点击事件
-    handleIntro () {
-      let introBool = true;
-      this.odom.addEventListener('click',() => {
-      if(introBool){
-        this.odom.innerHTML = this.data.content_in_full + `收起<i class="iconfont icon-jiantou_up"></i>`
-      }else{
-        this.odom.innerHTML = this.data.content_without_html
-      }
-      introBool = !introBool;
+    // 获取数据
+    async getData () {
+      let data;
+      await this.infoDataPromise.then((result) =>{
+        data = result
       })
+      this.data = data;
+      this.render();
     }
-    // Sort的点击事件
-     handleSort () {
-      $(this.$odom).on('click',this.sortclickHandler);
+    // 渲染视图
+    render () {
+      $('#app #main-collection').html(
+        Handlebars.compile(appCollectionMainView)(this.data)
+      )
+      appLogin.renderLogin({
+        '.collection-main_info_follow':'click'
+      });
     }
-    sortclickHandler () {
-      if($(this).hasClass('active')) return;
-      $(this).toggleClass('active').siblings('li').removeClass('active');
-      order=this.id;
-      new renderSortCollection().renderNewData();
+    // 绑定事件
+    bindEvents () {
+      // 点击详情拉伸
+      this.introEvents = new collectionBtn('.collection-main_info_intro', {
+        'click': this.introDownAndUp.bind(this)
+      });
+    }
+    introDownAndUp () {
+      if(this.introBool) {
+        this.introEvents.el.innerHTML = this.data.content_in_full + `收起<i class="iconfont icon-jiantou_up"></i>`;
+      }else{
+        this.introEvents.el.innerHTML = this.data.content_without_html;
+      }
+      this.introBool = !this.introBool;
     }
   }
-  new renderInfoCollection().init();
-  new renderSortCollection().init();
+
+  // sort数据处理
+  class sortDataProcessing {
+    constructor (order) {
+      this.collectionData = this.init(order);;
+    }
+    // 初始化
+    async init (order) {
+      let data = await getCollectionSortData(order); 
+      return data;
+    }
+    getSortData () {
+      return this.collectionData;
+    }
+  }
+  // 渲染sort视图
+  class renderSort {
+    constructor () {
+      this.order = 'commented_at';
+      this.data;
+      this.sortEvents;
+      this.haveData = {};
+    }
+    async init() {
+      await this.getData();
+      this.bindEvents();
+    }
+    // 获取数据
+    async getData () {
+      let data;
+      if( !this.haveData[this.order] ){
+        await new sortDataProcessing(this.order).getSortData().then((result) =>{
+          data = result;
+        })
+        this.haveData[this.order] = data;
+      }else{
+        data = this.haveData[this.order];
+      }
+      this.data = data;
+      this.render();
+    }
+    // 渲染视图
+    render () {
+      // console.log(this.data)
+    }
+    bindEvents () {
+      this.sortEvents = new collectionBtn('.collection-main_sort li', {
+        'click': this.otherArticle.bind(this)
+      },false);
+    }
+    // 查看其他文章
+    otherArticle (e) {
+      if($(e.target).hasClass('active')) return;
+      $(e.target).toggleClass('active').siblings('li').removeClass('active');
+      this.order = e.target.id;
+      this.getData()
+    }
+  }
+  // 绑定事件类
+  class collectionBtn {
+    constructor (selector, options,way=true) {     
+      this.$el = $(selector)
+      this.el = this.$el[0]
+      this.options = options
+      if (way) {
+        this.bindJsEvents()
+      }else {
+        this.bindJqEvents()
+      }
+    }
+    bindJsEvents () {
+      for( var key in this.options ) {
+        this.el.addEventListener(key, this.options[key])
+      }
+      return this;
+    }
+    bindJqEvents () {
+      for( var key in this.options ) {
+        this.$el.on(key, this.options[key])
+      }
+      return this;
+    }
+  }
+
+
+  new Collection().init()
+  
+  
 }
 
 module.exports = { 
