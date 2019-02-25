@@ -8,3 +8,4 @@ appController.renderAll()
 // index放入视图
 appIndexPage.render()
 
+appIndexPage.renderDown()

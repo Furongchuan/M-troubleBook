@@ -115,7 +115,7 @@ eval("const appHeaderView = __webpack_require__(/*! ../views/app-header.html */ 
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const appIndexTopView = __webpack_require__(/*! ../views/app-index_top.html */ \"./src/javascripts/views/app-index_top.html\");\r\nconst { getBooksList } = __webpack_require__(/*! ../models/app-index-model */ \"./src/javascripts/models/app-index-model.js\")\r\n\r\nconst render = async() => {\r\n  let BooksList = await getBooksList();\r\n  let template = Handlebars.compile(appIndexTopView);\r\n  $('#app #main #tbook').html(template({ taps: BooksList}))\r\n}\r\n\r\nmodule.exports = { render }\n\n//# sourceURL=webpack:///./src/javascripts/controllers/app-index-controller.js?");
+eval("const appIndexTopView = __webpack_require__(/*! ../views/app-index_top.html */ \"./src/javascripts/views/app-index_top.html\");\r\nconst appIndexBottomView = __webpack_require__(/*! ../views/app-index_bottom.html */ \"./src/javascripts/views/app-index_bottom.html\");\r\nconst { getBooksList,getBooksListDown } = __webpack_require__(/*! ../models/app-index-model */ \"./src/javascripts/models/app-index-model.js\");\r\n\r\nconst render = async() => {\r\n  let BooksList = await getBooksList();\r\n  console.log(BooksList)\r\n\r\n  let template = Handlebars.compile(appIndexTopView);\r\n  $('#app #main #tbook').html(template({ taps: BooksList}));\r\n}\r\n\r\n\r\nconst renderDown = async() => {\r\n  let BooksLists = await getBooksListDown();\r\n  \r\n  console.log(BooksLists)\r\n  let downs = Handlebars.compile(appIndexBottomView);\r\n  $('#app #main #tbookDown').html(downs({ tapsDown: BooksLists}));\r\n}\r\n\r\nmodule.exports = { render,renderDown }\n\n//# sourceURL=webpack:///./src/javascripts/controllers/app-index-controller.js?");
 
 /***/ }),
 
@@ -126,7 +126,7 @@ eval("const appIndexTopView = __webpack_require__(/*! ../views/app-index_top.htm
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("\r\nconst appController = __webpack_require__(/*! ./controllers/app-controller */ \"./src/javascripts/controllers/app-controller.js\");\r\nconst appIndexPage = __webpack_require__(/*! ./controllers/app-index-controller */ \"./src/javascripts/controllers/app-index-controller.js\");\r\n\r\n\r\n// 全局放入header视图\r\nappController.renderAll()\r\n// index放入视图\r\nappIndexPage.render()\r\n\r\n\n\n//# sourceURL=webpack:///./src/javascripts/index.js?");
+eval("\r\nconst appController = __webpack_require__(/*! ./controllers/app-controller */ \"./src/javascripts/controllers/app-controller.js\");\r\nconst appIndexPage = __webpack_require__(/*! ./controllers/app-index-controller */ \"./src/javascripts/controllers/app-index-controller.js\");\r\n\r\n\r\n// 全局放入header视图\r\nappController.renderAll()\r\n// index放入视图\r\nappIndexPage.render()\r\n\r\nappIndexPage.renderDown()\n\n//# sourceURL=webpack:///./src/javascripts/index.js?");
 
 /***/ }),
 
@@ -137,7 +137,7 @@ eval("\r\nconst appController = __webpack_require__(/*! ./controllers/app-contro
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const api = __webpack_require__(/*! ../api */ \"./src/javascripts/api/index.js\")\r\n// 获取主页内容\r\nconst getBooksList = () => {\r\n  return api.request({ url: 'asimov/subscriptions/recommended_collections?except_collection_ids[]=21&except_collection_ids[]=283250&except_collection_ids[]=83&except_collection_ids[]=4&except_collection_ids[]=95&except_collection_ids[]=14&except_collection_ids[]=76&except_collection_ids[]=13&except_collection_ids[]=38&except_collection_ids[]=28&except_collection_ids[]=11&except_collection_ids[]=256739&except_collection_ids[]=105&except_collection_ids[]=26'})\r\n}\r\n\r\nmodule.exports = {\r\n  getBooksList,\r\n}\n\n//# sourceURL=webpack:///./src/javascripts/models/app-index-model.js?");
+eval("const api = __webpack_require__(/*! ../api */ \"./src/javascripts/api/index.js\")\r\n// 获取主页内容\r\nconst getBooksList = () => {\r\n  return api.request({ url: 'asimov/subscriptions/recommended_collections?except_collection_ids[]=21&except_collection_ids[]=283250&except_collection_ids[]=83&except_collection_ids[]=4&except_collection_ids[]=95&except_collection_ids[]=14&except_collection_ids[]=76&except_collection_ids[]=13&except_collection_ids[]=38&except_collection_ids[]=28&except_collection_ids[]=11&except_collection_ids[]=256739&except_collection_ids[]=105&except_collection_ids[]=26'})\r\n}\r\nconst getBooksListDown = () =>{\r\n  return api.request({ url: 'asimov/trending/now?count=15&note_ids='})\r\n}\r\n\r\nmodule.exports = {\r\n  getBooksList,\r\n  getBooksListDown\r\n}\n\n//# sourceURL=webpack:///./src/javascripts/models/app-index-model.js?");
 
 /***/ }),
 
@@ -149,6 +149,17 @@ eval("const api = __webpack_require__(/*! ../api */ \"./src/javascripts/api/inde
 /***/ (function(module, exports) {
 
 eval("module.exports = \"<header id=\\\"app-header\\\">  <img src=\\\"./static/images/nav-logo.faf216af.png\\\" alt=\\\"\\\" class=\\\"header-logo\\\">  <h3 class=\\\"header-title\\\">创作你的创作</h3></header>\"\n\n//# sourceURL=webpack:///./src/javascripts/views/app-header.html?");
+
+/***/ }),
+
+/***/ "./src/javascripts/views/app-index_bottom.html":
+/*!*****************************************************!*\
+  !*** ./src/javascripts/views/app-index_bottom.html ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = \"    <ul class=\\\"tbook-list__item\\\">        {{#each tapsDown}}        <li class=\\\"tbook-list__item-info\\\">            <a class=\\\"tbook-list__item-title\\\">                                    {{#if object.data.list_image_url}}                <span>                    <img src=\\\"{{object.data.list_image_url}}\\\" alt=\\\"\\\">                              </span>      {{/if}}                        <div>                            <h1>{{object.data.title}}</h1>                            <p>{{object.data.public_abbr}}</p>                         </div>            </a>            <div class=\\\"tbook-list__items\\\">                <i class=\\\"iconfont icon-weibiaoti--fuben-\\\" style=\\\"color: #ea6f5a;margin-right: 3px;\\\"></i>                <span>{{object.data.total_fp_amount}}</span>                <span>{{object.data.user.nickname}}</span>                <span><i class=\\\"iconfont icon-duihuakuang\\\" style=\\\"color: #ea6f5a;margin-right: 3px;\\\"></i>{{object.data.public_comments_count}}</span>                <span><i class=\\\"iconfont icon-xin\\\" style=\\\"color: #ea6f5a;margin-right: 3px;\\\"></i>{{object.data.likes_count}}</span>            </div>        </li>        {{/each}}    </ul>\"\n\n//# sourceURL=webpack:///./src/javascripts/views/app-index_bottom.html?");
 
 /***/ }),
 
