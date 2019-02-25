@@ -1,26 +1,41 @@
 
     <ul class="tbook-list__item">
         {{#each tapsDown}}
-        <li class="tbook-list__item-info">
-            <a class="tbook-list__item-title">
-                
-                    {{#if object.data.list_image_url}}
-                <span>
-                    <img src="{{object.data.list_image_url}}" alt="">
-              
-                </span>      {{/if}}
+            <li class="tbook-list__item-info">
+                <div class="tbook-list__left">            
+                    <a class="tbook-list__item-title" href="">
                         <div>
                             <h1>{{object.data.title}}</h1>
                             <p>{{object.data.public_abbr}}</p> 
                         </div>
-            </a>
-            <div class="tbook-list__items">
-                <i class="iconfont icon-weibiaoti--fuben-" style="color: #ea6f5a;margin-right: 3px;"></i>
-                <span>{{object.data.total_fp_amount}}</span>
-                <span>{{object.data.user.nickname}}</span>
-                <span><i class="iconfont icon-duihuakuang" style="color: #ea6f5a;margin-right: 3px;"></i>{{object.data.public_comments_count}}</span>
-                <span><i class="iconfont icon-xin" style="color: #ea6f5a;margin-right: 3px;"></i>{{object.data.likes_count}}</span>
-            </div>
-        </li>
+                    </a>
+                    <div class="tbook-list__items">
+                        <i class="iconfont icon-weibiaoti--fuben-" style="color: #ea6f5a;margin-right: 3px;"></i>
+                        <span>
+                            {{object.data.total_fp_amount}}
+                        </span>
+                        <span>
+                            {{object.data.user.nickname}}
+                        </span>
+                        <span>
+                            <i class="iconfont icon-duihuakuang" style="color: #ea6f5a;margin-right: 3px;"></i>
+                            {{object.data.public_comments_count}}
+                        </span>
+                        <span>
+                            <i class="iconfont icon-xin" style="color: #ea6f5a;margin-right: 3px;"></i>
+                            {{object.data.likes_count}}
+                        </span>
+                    </div>
+                </div>
+
+
+                {{#if object.data.list_image_url}}
+            <div class="tbook-list__right__div">
+                <span class="tbook-list__right">
+                    <img src="{{object.data.list_image_url}}" alt="">
+                </span> 
+            </div>     
+            {{/if}}
+            </li>
         {{/each}}
     </ul>
