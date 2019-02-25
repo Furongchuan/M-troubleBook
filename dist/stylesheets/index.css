@@ -382,8 +382,7 @@ a {
   font-size: 0;
   border-color: #f0f0f0;
   display: flex;
-  justify-content: space-around;
-  align-items: center; }
+  justify-content: space-around; }
 
 .tbook-list__item-title {
   display: block;
@@ -432,7 +431,8 @@ a {
   line-height: .586667rem;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap; }
+  white-space: nowrap;
+  width: 244px; }
 
 .tbook-list__items span {
   margin-right: .32rem;
@@ -465,11 +465,7 @@ a {
   border-style: none; }
 
 .tbook-list__right__div {
-  width: 6.666667rem;
-  height: 2.666667rem;
-  display: flex;
-  justify-content: center;
-  align-items: center; }
+  width: 7.2rem; }
 
 #app-collection-main {
   width: 100%;

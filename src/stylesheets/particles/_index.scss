@@ -82,7 +82,6 @@
   border-color: #f0f0f0;
   display: flex;
   justify-content: space-around;
-  align-items: center
 }
 
 
@@ -141,6 +140,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  width: 244px;
 }
 
 .tbook-list__items span{
@@ -177,9 +177,5 @@
   border-style: none;
 }
 .tbook-list__right__div{
-  width: 6.666667rem;
-  height: 2.666667rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 7.2rem;
 }
