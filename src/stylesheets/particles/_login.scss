@@ -16,6 +16,7 @@
   text-align: center;
   color: #333;
   transition: all 0.5s;
+  z-index: 21;
   &.login-hide{
     transform: translateX(100%);
     opacity: 0;

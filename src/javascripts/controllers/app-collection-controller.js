@@ -1,5 +1,7 @@
 // 获取collection主要内容视图
 const appCollectionMainView = require('../views/app-collection.html');
+// 获取sort视图
+const appCollectionSortView = require('../views/app-index_bottom.html')
 // 获取collection的info数据
 const { getCollectionInfoData, getCollectionSortData }= require('../models/app-collection-mode');
 // 获取登录视图控制
@@ -144,7 +146,9 @@ const renderCollection = async() => {
     }
     // 渲染视图
     render () {
-      // console.log(this.data)
+      $('.collection-main_sortlist').html(
+        Handlebars.compile(appCollectionSortView)({ tapsDown:this.data })
+      )
     }
     bindEvents () {
       this.sortEvents = new collectionBtn('.collection-main_sort li', {
