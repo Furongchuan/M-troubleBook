@@ -5,7 +5,8 @@ const webpackConfig = {
     mode: 'development',
     entry: {
         index: pathUtil.join(__dirname, '../src/javascripts/index.js'),
-        collection: pathUtil.join(__dirname, '../src/javascripts/collection.js')
+        collection: pathUtil.join(__dirname, '../src/javascripts/collection.js'),
+        detailed: pathUtil.join(__dirname, '../src/javascripts/detailed.js')
     },
     output: {
         filename: '[name].js'

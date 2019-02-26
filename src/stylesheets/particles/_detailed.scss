@@ -1,0 +1,121 @@
+#detailed{
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  padding-left: 18px;
+  padding-right: 18px;
+}
+#detailed-show{
+  color: #333
+}
+.detailed-show-top__title{
+  margin: 15px 0;
+  font-size: 30px;
+  font-weight: 700;
+  font-family: -apple-system,SF UI Display,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
+  line-height: 1.4;
+  color: #2f2f2f;
+}
+.detailed-show-top__mainBody__Title{
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: #b1b1b1;
+}
+.detailed-show-top__mainBody__Title__a{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.detailed-show-top__mainBody__imgOne{
+  width: 34px;
+  height: 34px;
+  border-radius: 17px;
+  float: left;
+  margin-right: 5px;
+}
+.detailed-show-top__mainBody__userBox{
+  width: 3.733333rem;
+  height: .933333rem;
+  overflow: hidden;
+  line-height: .933333rem
+}
+.detailed-show-top__mainBody__user{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.detailed-show-top__mainBody__userInfo{
+  overflow: hidden;
+  margin-right: 5px;
+}
+.detailed-show-top__mainBody__userName{
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 16px;
+  color: #484848;
+}
+.detailed-show-top__mainBody__userBadge{
+  color: #333;
+  vertical-align: middle;    
+  flex-shrink: 0;
+}
+.detailed-show-top__mainBody__imgTwe{
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+.detailed-show-top__mainBody__userBadge{
+  padding: 1px 2px;
+  font-size: 12px;
+  color: #ea6f5a;
+  border-radius: 3px;
+  vertical-align: middle;
+  position: relative;
+}
+.detailed-show-top__mainBody__userBadge::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid #ea6f5a;
+  width: 200%;
+  height: 180%;
+  -webkit-transform: scale(.5);
+  -ms-transform: scale(.5);
+  transform: scale(.5);
+  -webkit-transform-origin: left top;
+  -ms-transform-origin: left top;
+  transform-origin: left top;
+  border-radius: 3px;
+}
+.detailed-show-center{
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #2f2f2f;
+}
+.detailed-show-center__Main{
+  position: relative;
+  overflow: hidden;
+  padding-left: 18px;
+  padding-right: 18px;
+  margin-left: -18px;
+  margin-right: -18px;
+}
