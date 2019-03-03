@@ -2,6 +2,8 @@
 const appCollectionMainView = require('../views/app-collection.html');
 // 获取sort视图
 const appCollectionSortView = require('../views/app-index_bottom.html')
+// 获取footer视图
+const appFooterView = require('../views/app-footer.html')
 // 获取collection的info数据
 const { getCollectionInfoData, getCollectionSortData }= require('../models/app-collection-mode');
 // 获取登录视图控制
@@ -83,8 +85,10 @@ const renderCollection = async() => {
       $('#app #main-collection').html(
         Handlebars.compile(appCollectionMainView)(this.data)
       )
+      $('#app #footer').html(appFooterView)
       appLogin.renderLogin({
-        '.collection-main_info_follow':'click'
+        '.collection-main_info_follow':'click',
+        '.footer-wrap-panel button':'click',
       });
     }
     // 绑定事件
